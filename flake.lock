@@ -100,7 +100,8 @@
         "hercules-ci-effects": "hercules-ci-effects",
         "invokeai-src": "invokeai-src",
         "nixpkgs": "nixpkgs",
-        "textgen-src": "textgen-src"
+        "textgen-src": "textgen-src",
+        "textgen-src-patches": "textgen-src-patches"
       }
     },
     "textgen-src": {
@@ -117,6 +118,22 @@
         "owner": "oobabooga",
         "ref": "v1.7",
         "repo": "text-generation-webui",
+        "type": "github"
+      }
+    },
+    "textgen-src-patches": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705501384,
+        "narHash": "sha256-88pzog8EGBIVTGgfg2pfIZT0V8LublINit+me3SQLdw=",
+        "owner": "Program-Learning",
+        "repo": "nixified-ai-flake",
+        "rev": "491eec92541d08a8f8694727966fb61ed10fb92f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Program-Learning",
+        "repo": "nixified-ai-flake",
         "type": "github"
       }
     }

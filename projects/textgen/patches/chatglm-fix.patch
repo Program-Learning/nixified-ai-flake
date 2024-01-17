@@ -1,0 +1,21 @@
+--- a/src/modules/models.py
++++ b/src/modules/models.py
+@@ -207,8 +207,18 @@ def huggingface_loader(model_name):
+         elif shared.args.alpha_value > 1:
+             params['rope_scaling'] = {'type': 'dynamic', 'factor': RoPE.get_alpha_value(shared.args.alpha_value, shared.args.rope_freq_base)}
+ 
++        if shared.args.model_type == 'chatglm':
++            del params["low_cpu_mem_usage"]
++            del params["device_map"]
++
+         model = LoaderClass.from_pretrained(path_to_model, **params)
+ 
++        if shared.args.model_type == 'chatglm':
++            if shared.args.cpu:
++                model = model.float()
++            else:
++                model = model.half().cuda() 
++
+     return model
+ 
+ 

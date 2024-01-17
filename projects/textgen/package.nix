@@ -7,6 +7,7 @@
 , stateDir ? "$HOME/.textgen/state"
 , libdrm
 , cudaPackages
+, textgen-src-patches
 }:
 let
   patchedSrc = runCommand "textgen-patchedSrc" { } ''
@@ -67,6 +68,7 @@ let
       --replace "folder = 'characters'" "folder = '$out/characters'" \
       --replace "Path('characters" "Path('$out/characters" \
       --replace "characters/" "$out/characters/"
+    patch ./src/modules/models.py < ${textgen-src-patches}/projects/textgen/patches/chatglm-fix.patch
     mv ./src $out
     ln -s ${tmpDir}/models/ $out/models
     ln -s ${tmpDir}/loras/ $out/loras

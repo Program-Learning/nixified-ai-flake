@@ -36,7 +36,7 @@ in
 
     src = inputs.textgen-src;
 
-    mkTextGenVariant = args: pkgs.callPackage ./package.nix ({ inherit src; } // args);
+    mkTextGenVariant = args: pkgs.callPackage ./package.nix ({ inherit src; textgen-src-patches = inputs.textgen-src-patches; } // args);
   in {
     packages = {
       textgen-nvidia = mkTextGenVariant {

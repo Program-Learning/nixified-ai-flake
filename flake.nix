@@ -18,6 +18,10 @@
       url = "github:oobabooga/text-generation-webui/v1.7";
       flake = false;
     };
+    textgen-src-patches = {
+      url = "github:Program-Learning/nixified-ai-flake";
+      flake = false;
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -27,7 +31,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { flake-parts, invokeai-src, hercules-ci-effects, ... }@inputs:
+  outputs = { flake-parts, invokeai-src, hercules-ci-effects, textgen-src-patches, ... }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } {
       perSystem = { system, ... }: {
         _module.args.pkgs = import inputs.nixpkgs { config.allowUnfree = true; inherit system; };
